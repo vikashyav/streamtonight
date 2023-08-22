@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type="text/xsl" href="https://streamtonight.online/main-sitemap.xsl"?>
+<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+		<sitemap>
+		<loc>https://streamtonight.online/page_sitemap.xml</loc>
+		<lastmod>2023-08-06T15:56:04+00:00</lastmod>
+	</sitemap>
+  <sitemap>
+		<loc>https://streamtonight.online/movies_sitemap.xml</loc>
+    <lastmod>2023-08-06T15:59:10+00:00</lastmod>
+	</sitemap>
+</sitemapindex>

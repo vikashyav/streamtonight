@@ -1,0 +1,69 @@
+{
+    "headers": [
+        {
+            "source": "/sitemap.xml",
+            "headers": [
+                {
+                    "key": "Cache-Control",
+                    "value": "no-store"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/xml"
+                }
+            ]
+        },
+        {
+            "source": "/sitemap_index.xml",
+            "headers": [
+                {
+                    "key": "Cache-Control",
+                    "value": "no-store"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/xml"
+                }
+            ]
+        },
+        {
+            "source": "/page-sitemap.xml",
+            "headers": [
+                {
+                    "key": "Cache-Control",
+                    "value": "no-store"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/xml"
+                }
+            ]
+        },
+        {
+            "source": "/movies-sitemap.xml",
+            "headers": [
+                {
+                    "key": "Cache-Control",
+                    "value": "no-store"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/xml"
+                }
+            ]
+        },
+        {
+            "source": "/robots.txt",
+            "headers": [
+                {
+                    "key": "Cache-Control",
+                    "value": "no-store"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "text/plain"
+                }
+            ]
+        }
+    ]
+}

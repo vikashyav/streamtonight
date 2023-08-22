@@ -1,0 +1,3 @@
+const string ="transformers-rise-of-the-beasts-full-movie-download-watch-online-free-667538";
+const strArr= string.split("-")
+console.log( strArr[strArr.length-1]);

@@ -1,0 +1,4 @@
+User-agent: *
+Disallow:
+
+Sitemap: https://streamtonight.online/sitemap_index.xml

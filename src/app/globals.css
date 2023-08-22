@@ -1,0 +1,103 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap");
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
+  }
+}
+
+/* body {
+  color: rgb(var(--foreground-rgb));
+  background: linear-gradient(
+      to bottom,
+      transparent,
+      rgb(var(--background-end-rgb))
+    )
+    rgb(var(--background-start-rgb));
+} */
+
+.day2-header{
+  color: #f9f9f9;
+  background-color: #040714;
+}
+
+@layer base {
+  body {
+    @apply bg-[#040714] text-[#f9f9f9] font-body;
+  }
+}
+
+/* scroll bar */
+input:-webkit-autofill {
+  /* to prevent adding yellow background to autofill input */
+  transition-delay: 9999s;
+  transition-property: background-color, color;
+}
+
+*::-webkit-scrollbar {
+  background-color: transparent;
+  width: 8px;
+  height: 8px;
+  border-radius: 4px;
+}
+
+*::-webkit-scrollbar-track {
+  background-color: transparent;
+  border-radius: 4px;
+}
+
+*::-webkit-scrollbar-track:hover {
+  background-color: #dddddd;
+}
+
+*::-webkit-scrollbar-track-piece {
+  background-color: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: transparent;
+  border-radius: 4px;
+}
+
+*:hover::-webkit-scrollbar-thumb {
+  background-color: #c4c4c4;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background-color: #9e9d9d;
+}
+
+
+.postTitle {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 16px;
+  margin-top: 3px;
+  /* padding: 8px; */
+  margin-bottom: 3px;
+  overflow: hidden;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+}
+
+.movieDetails {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  font-family: "Varela Round", sans-serif;
+  font-size: 14px;
+  margin-top: 6px;
+  justify-content: space-between;
+}
