@@ -1,6 +1,4 @@
 'use client'
-import Head from "next/head";
-import Image from "next/image";
 import { useState } from "react";
 // import { useRouter } from "next/navigation";
 // import Header from "../../components/Header";
@@ -74,7 +72,7 @@ function Show({ result, recommendedShow, tvSeasonDetails, season_number }) {
               className="relative"
             >
               <div className="relative min-h-[calc(100vh-72px)] " >
-                <Image
+                <img
                   src={
                     `${BASE_URL}${result.backdrop_path || result.poster_path}` ||
                     `${BASE_URL}${result.poster_path}`
