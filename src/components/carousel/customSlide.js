@@ -15,7 +15,7 @@ export default function CustomSlide(props) {
     }
   };
   const reformatTitle = (title) => {
-    return slugify(title) ||title.replace(/ /g, "-").toLowerCase();
+    return slugify(title);
   };
   const getCurrentUrl = `/${checkTvOrMovieFromTitle(original_title, original_name)}/${checkTvOrMovieFromTitle(original_title, original_name) == "movie" ? reformatTitle(title) : reformatTitle(props?.name)}/${id}`;
   useEffect(() => {

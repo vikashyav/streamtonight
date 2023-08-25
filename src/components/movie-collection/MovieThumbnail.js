@@ -50,7 +50,7 @@ function MovieThumbnail({ result }) {
           <span className="postTitle text-base overflow-hidden text-ellipsis my-[3px]">
             {result.title || result.original_name}
           </span>
-          <div className="movieDetails">
+          <div className="movieDetails bg-black/2">
             <p className="movieDate">{result.release_date}</p>
             <p className="type">{result.vote_average}</p>
             {/* <p className="hidden">{result.overview}</p> */}
