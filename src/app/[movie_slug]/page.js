@@ -12,41 +12,55 @@ import MOVIE_CONTENT from "@/helper/movie-content";
 // generateStaticParams getStaticPaths
 export async function getStaticPaths() {
 
-  const [ trendingNow = [], Movies1 = [], MovieList2 = [], MovieList3 = [], top_ratedMovies = [], popularMovies = []] =
+  const [ trendingNow = {}, trendingNow2 = {}, trendingNow3 = {}, 
+   Movies1 = {}, MovieList2 = {}, MovieList3 = {},
+   MovieList4 = {}, MovieList5 = {}, MovieList6 = {},
+   MovieList7 = {}, MovieList8 = {}, MovieList9 = {},
+  ] =
     await Promise.all([
       tmdbMovieApiList.getTrendingAllByWeek({ page: 1 }),
+      tmdbMovieApiList.getTrendingAllByWeek({ page: 2 }),
+      tmdbMovieApiList.getTrendingAllByWeek({ page: 3 }),
       tmdbMovieApiList.getDiscoverMovies({ ...tmdbPayload.BOLLYWOOD_RECENT_YEAR_PAYLOAD, page: 1 }),
       tmdbMovieApiList.getDiscoverMovies({ ...tmdbPayload.BOLLYWOOD_RECENT_YEAR_PAYLOAD, page: 2 }),
       tmdbMovieApiList.getDiscoverMovies({ ...tmdbPayload.BOLLYWOOD_RECENT_YEAR_PAYLOAD, page: 3 }),
-      // tmdbMovieApiList.getTopRatedMovies({ page: 1 }),
-      // tmdbMovieApiList.getPopularMovies({ page: 1 })
+      tmdbMovieApiList.getDiscoverMovies({ ...tmdbPayload.BOLLYWOOD_RECENT_YEAR_PAYLOAD, page: 4 }),
+      tmdbMovieApiList.getDiscoverMovies({ ...tmdbPayload.BOLLYWOOD_RECENT_YEAR_PAYLOAD, page: 5 }),
+      tmdbMovieApiList.getDiscoverMovies({ ...tmdbPayload.BOLLYWOOD_RECENT_YEAR_PAYLOAD, page: 6 }),
+      tmdbMovieApiList.getDiscoverMovies({ ...tmdbPayload.BOLLYWOOD_RECENT_YEAR_PAYLOAD, page: 7 }),
+      // tmdbMovieApiList.getDiscoverMovies({ ...tmdbPayload.BOLLYWOOD_RECENT_YEAR_PAYLOAD, page: 8 }),
+      // tmdbMovieApiList.getDiscoverMovies({ ...tmdbPayload.BOLLYWOOD_RECENT_YEAR_PAYLOAD, page: 9 }),
     ]);
   const data = [
     ...trendingNow?.results,
+    ...trendingNow2?.results,
+    ...trendingNow3?.results,
     ...Movies1?.results,
     ...MovieList2?.results,
     ...MovieList3?.results,
+    ...MovieList4?.results,
+    ...MovieList5?.results,
+    ...MovieList6?.results,
+    ...MovieList7?.results,
+    // ...MovieList8?.results,
+    // ...MovieList9?.results,
   ]
-
-    //   ...MovieList3?.results,
-    // ...popularMovies?.results,
-    // ...top_ratedMovies?.results,
 
   let paths = [];
   data.forEach((item) => {
     //&& slugifyTitle!==null && slugifyTitle!== undefined && slugifyTitle!==""
     const slugifyTitle = slugify(item?.title || item?.original_title);
-    if(slugifyTitle){
-      const movie_id = item.id.toString();
-    let slugifyUrl = slugify(`${(item?.title || item?.original_title)} ${constant.MOVIE_PAGE.SEO_MOVIE_URL}`);
-    slugifyUrl= `${slugifyUrl}-${movie_id}`
+    const movie_id = item.id.toString();
+    const slugifyUrl = slugify(`${(item?.title || item?.original_title)} ${constant.MOVIE_PAGE.SEO_MOVIE_URL} ${movie_id}`);
+    // slugifyUrl= `${slugifyUrl}-${movie_id}`
+    const movieSlugExist= paths.find((list)=>list?.params?.movie_slug === slugifyUrl);
+    if(slugifyTitle && !movieSlugExist){
       paths = [...paths,
         { params: { movie_slug: slugifyUrl}, }
       ]
     }
     // params: { movie_name: "transformers:-rise-of-the-beasts", movie_id: { movie_id: "667538" } },
   });
- 
   return {
     paths,
   fallback: true
