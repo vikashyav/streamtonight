@@ -18,7 +18,7 @@ function MovieThumbnail({ result }) {
   if (movieOrSeries==="movie") {
     slugifyUrl = `/${slugify(`${(result?.title || result?.original_title)} ${constant.MOVIE_PAGE.SEO_MOVIE_URL}`)}-${result.id}`;
   } else {
-    slugifyUrl = `/${movieOrSeries}/${slugify(`${(result?.title || result?.original_title)} ${constant.MOVIE_PAGE.SEO_MOVIE_URL}`)}/${result.id}`;
+    slugifyUrl = `/${movieOrSeries}/${slugify(`${(result?.title || result?.original_title)} ${constant.MOVIE_PAGE.SEO_MOVIE_URL}`)}-${result.id}`;
   }
   return (
     <a

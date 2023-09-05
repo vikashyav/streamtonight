@@ -3,7 +3,11 @@ import constant from "@/helper/constant";
 import * as tmdbSeriesApi from "@/api/tv-series";
 
 export async function getData(context) {
-  const { series_id } = context.params;
+  // const { series_id } = context.params;
+const seriesSlug = context.params.series_name;
+  var words = seriesSlug.split('-');
+var series_id = words[words.length - 1];
+
   const apiKey = constant.TMDB.API_KEY;
 
   const generateEndpoint = (id, seasons) => {

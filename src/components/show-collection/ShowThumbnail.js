@@ -16,7 +16,7 @@ function ShowThumbnail({ result, isSeriesSeason, series_id, series_name }) {
     }
   };
 
-  let slugifyUrl = `/${checkTvOrMovieFromTitle(result.original_title, result.name)}/${slugify(series_name|| result?.name || (result?.original_title || result?.original_name))}/${series_id || result.id}`;
+  let slugifyUrl = `/${checkTvOrMovieFromTitle(result.original_title, result.name)}/${slugify(series_name|| result?.name || (result?.original_title || result?.original_name))}-${series_id || result.id}`;
  
   if (isSeriesSeason ==="Seasons") {
     slugifyUrl = `${slugifyUrl}?season_number=${result?.season_number}`
