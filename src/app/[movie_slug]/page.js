@@ -1,12 +1,12 @@
 // import { getSession, useSession } from "next-auth/client";
 // import Image from "next/image";
-import MoviesCollection from "../../../../components/movie-collection";
-import MovieSummary from "../../../../components/MovieSummary";
-import ErrorPage from "../../../404";
-import * as tmdbMovieApiList from "../../../../api/movie";
+import MoviesCollection from "../../components/movie-collection";
+import MovieSummary from "../../components/MovieSummary";
+import ErrorPage from "../404";
+import * as tmdbMovieApiList from "../../api/movie";
 // import MovieSeo from "../../../../components/SEO/movie-seo";
-import tmdbPayload from "../../../../helper/tmdb-payload";
-import slugify from "../../../../../utils/slugify";
+import tmdbPayload from "../../helper/tmdb-payload";
+import slugify from "../../../utils/slugify";
 import constant from "@/helper/constant";
 import MOVIE_CONTENT from "@/helper/movie-content";
 // generateStaticParams getStaticPaths
@@ -36,10 +36,11 @@ export async function generateStaticParams() {
     //&& slugifyTitle!==null && slugifyTitle!== undefined && slugifyTitle!==""
     const slugifyTitle = slugify(item?.title || item?.original_title);
     if(slugifyTitle){
-    const slugifyUrl = slugify(`${(item?.title || item?.original_title)} ${constant.MOVIE_PAGE.SEO_MOVIE_URL}`);
       const movie_id = item.id.toString();
+    let slugifyUrl = slugify(`${(item?.title || item?.original_title)} ${constant.MOVIE_PAGE.SEO_MOVIE_URL}`);
+    slugifyUrl= `${slugifyUrl}-${movie_id}`
       paths = [...paths,
-        { params: { movie_name: slugifyUrl,  movie_id }, }
+        { params: { movie_slug: slugifyUrl}, }
       ]
     }
     // params: { movie_name: "transformers:-rise-of-the-beasts", movie_id: { movie_id: "667538" } },
@@ -53,7 +54,9 @@ export async function generateStaticParams() {
 export async function getData(context) {
   // const session = await getSession(context);
   // const { id } = context.query;
-  const id = context.params.movie_id;
+  const movieSlug = context.params.movie_slug;
+var words = movieSlug.split('-');
+var id = words[words.length - 1];
   const request = await tmdbMovieApiList.getMovieById({ movie_id: id, append_to_response:"videos" })
   
   const movieCast = await tmdbMovieApiList.getMovieCast({ movie_id: id });
@@ -73,7 +76,10 @@ export async function getData(context) {
 
 export async function generateMetadata(context) {
   // read route params
-  const id = context.params.movie_id;
+  // const id = context.params.movie_id;
+  const movieSlug = context.params.movie_slug;
+  var words = movieSlug.split('-');
+  var id = words[words.length - 1];
   const movieDetail = await tmdbMovieApiList.getMovieById({ movie_id: id, append_to_response:"videos" })
   // fetch data
   // optionally access and extend (rather than replace) parent metadata
