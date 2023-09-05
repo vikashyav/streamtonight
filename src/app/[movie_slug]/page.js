@@ -10,21 +10,22 @@ import slugify from "../../../utils/slugify";
 import constant from "@/helper/constant";
 import MOVIE_CONTENT from "@/helper/movie-content";
 // generateStaticParams getStaticPaths
-export async function generateStaticParams() {
+export async function getStaticPaths() {
 
-  const [Movies1 = [], trendingNow = [], MovieList2 = [], MovieList3 = [], top_ratedMovies = [], popularMovies = []] =
+  const [ trendingNow = [], Movies1 = [], MovieList2 = [], MovieList3 = [], top_ratedMovies = [], popularMovies = []] =
     await Promise.all([
-      tmdbMovieApiList.getDiscoverMovies({ ...tmdbPayload.BOLLYWOOD_RECENT_YEAR_PAYLOAD, page: 1 }),
-      // tmdbMovieApiList.getDiscoverMovies({ ...tmdbPayload.BOLLYWOOD_RECENT_YEAR_PAYLOAD, page: 2 }),
-      // tmdbMovieApiList.getDiscoverMovies({ ...tmdbPayload.BOLLYWOOD_RECENT_YEAR_PAYLOAD, page: 3 }),
-      // tmdbMovieApiList.getTopRatedMovies({ page: 1 }),
       tmdbMovieApiList.getTrendingAllByWeek({ page: 1 }),
+      tmdbMovieApiList.getDiscoverMovies({ ...tmdbPayload.BOLLYWOOD_RECENT_YEAR_PAYLOAD, page: 1 }),
+      tmdbMovieApiList.getDiscoverMovies({ ...tmdbPayload.BOLLYWOOD_RECENT_YEAR_PAYLOAD, page: 2 }),
+      tmdbMovieApiList.getDiscoverMovies({ ...tmdbPayload.BOLLYWOOD_RECENT_YEAR_PAYLOAD, page: 3 }),
+      // tmdbMovieApiList.getTopRatedMovies({ page: 1 }),
       // tmdbMovieApiList.getPopularMovies({ page: 1 })
     ]);
   const data = [
     ...trendingNow?.results,
     ...Movies1?.results,
-    // ...MovieList2?.results,
+    ...MovieList2?.results,
+    ...MovieList3?.results,
   ]
 
     //   ...MovieList3?.results,
@@ -46,7 +47,10 @@ export async function generateStaticParams() {
     // params: { movie_name: "transformers:-rise-of-the-beasts", movie_id: { movie_id: "667538" } },
   });
  
-  return paths;
+  return {
+    paths,
+  fallback: true
+  };
 }
 
 

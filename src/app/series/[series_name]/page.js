@@ -5,8 +5,8 @@ import * as tmdbSeriesApi from "@/api/tv-series";
 export async function getData(context) {
   // const { series_id } = context.params;
 const seriesSlug = context.params.series_name;
-  var words = seriesSlug.split('-');
-var series_id = words[words.length - 1];
+  const words = seriesSlug.split('-');
+  const series_id = words[words.length - 1];
 
   const apiKey = constant.TMDB.API_KEY;
 
@@ -60,7 +60,10 @@ var series_id = words[words.length - 1];
 
 export async function generateMetadata(context) {
   // read route params
-  const id = context.params.series_id;
+  // const id = context.params.series_id;
+  const seriesSlug = context.params.series_name;
+  const words = seriesSlug.split('-');
+  const id = words[words.length - 1];
   const seriesDetails = await tmdbSeriesApi.getTvSeriesById({ series_id: id, append_to_response: "videos" })
   // fetch data
   // optionally access and extend (rather than replace) parent metadata
