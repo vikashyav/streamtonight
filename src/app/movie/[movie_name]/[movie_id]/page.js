@@ -80,10 +80,10 @@ export async function generateMetadata(context) {
   const previousImages = `${constant.TMDB.IMAGE_BASE_URL}/${constant.THUMBNAIL_SIZE}${movieDetail.poster_path}`|| []
  
   return {
-    title: `${movieDetail?.title || movieDetail?.original_name} - Stream To Night`,
+    title: `${movieDetail?.title || movieDetail?.original_name} - day2movies | streamtonight`,
     description: `${movieDetail?.title || movieDetail?.original_name}, ${movieDetail?.overview}`,
     openGraph: {
-      title: `${movieDetail?.title || movieDetail?.original_name} Stream To Night - watch movies & series online for free`,
+      title: `${movieDetail?.title || movieDetail?.original_name} day2movies | streamtonight - watch movies & series online for free`,
       description: `${movieDetail?.title || movieDetail?.original_name}, ${movieDetail?.overview}`,
       url: `https://streamtonight.online/${movieDetail?.id}`,
       siteName: 'streamtonight',

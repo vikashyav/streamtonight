@@ -5,11 +5,11 @@ import constant from '@/helper/constant'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata = {
-  title: 'Unlock a World of Entertainment with Stream To Night',
-  description: 'Stream To Night: Your ultimate destination for movies and series. Experience seamless streaming, explore a diverse catalog, and keep pace with the latest releases.',
+  title: 'Unlock a World of Entertainment with day2movies | streamtonight',
+  description: 'day2movies | streamtonight: Your ultimate destination for movies and series. Experience seamless streaming, explore a diverse catalog, and keep pace with the latest releases.',
   openGraph: {
-    title: 'Stream To Night - watch movies & series online for free',
-    description: 'Discover the ultimate online destination for movies and web series at Stream To Night. Explore a vast library of content, enjoy seamless streaming, and stay updated with the latest releases. Join us for an unparalleled entertainment experience!',
+    title: 'day2movies | streamtonight - watch movies & series online for free',
+    description: 'Discover the ultimate online destination for movies and web series at day2movies | streamtonight. Explore a vast library of content, enjoy seamless streaming, and stay updated with the latest releases. Join us for an unparalleled entertainment experience!',
     url: 'https://streamtonight.online',
     siteName: 'streamtonight',
     images: [
