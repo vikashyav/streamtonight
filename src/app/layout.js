@@ -8,10 +8,10 @@ const structuredData={
   "@context": "https://schema.org/",
   "@type": "WebSite",
   "name": "day2movies",
-  "url": "https://www.day2movies.fun/",
+  "url": "https://streamtonight.online/",
   "potentialAction": {
     "@type": "SearchAction",
-    "target": "https://www.day2movies.fun/search/{search_term_string}",
+    "target": "https://streamtonight.online/search/{search_term_string}",
     "query-input": "required name=search_term_string"
   }
 }
