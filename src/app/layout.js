@@ -4,12 +4,24 @@ import { Inter } from 'next/font/google'
 import constant from '@/helper/constant'
 const inter = Inter({ subsets: ['latin'] })
 
+const structuredData={
+  "@context": "https://schema.org/",
+  "@type": "WebSite",
+  "name": "day2movies",
+  "url": "https://www.day2movies.fun/",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "https://www.day2movies.fun/search/{search_term_string}",
+    "query-input": "required name=search_term_string"
+  }
+}
+
 export const metadata = {
-  title: 'Unlock a World of Entertainment with day2movies | streamtonight',
-  description: 'day2movies | streamtonight: Your ultimate destination for movies and series. Experience seamless streaming, explore a diverse catalog, and keep pace with the latest releases.',
+  title: 'Unlock a World of Entertainment with day2movies, streamtonight',
+  description: 'day2movies, streamtonight: Your ultimate destination for movies and series. Experience seamless streaming, explore a diverse catalog, and keep pace with the latest releases.',
   openGraph: {
-    title: 'day2movies | streamtonight - watch movies & series online for free',
-    description: 'Discover the ultimate online destination for movies and web series at day2movies | streamtonight. Explore a vast library of content, enjoy seamless streaming, and stay updated with the latest releases. Join us for an unparalleled entertainment experience!',
+    title: 'day2movies, streamtonight - watch movies & series online for free',
+    description: 'Discover the ultimate online destination for movies and web series at day2movies, streamtonight. Explore a vast library of content, enjoy seamless streaming, and stay updated with the latest releases. Join us for an unparalleled entertainment experience!',
     url: 'https://streamtonight.online',
     siteName: 'streamtonight',
     images: [
@@ -47,6 +59,9 @@ export default function RootLayout({ children }) {
           <p>&copy; 2023 streamtonight. All rights reserved.</p>
         </div>
       </footer>
+      <script type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+      />
       </body>
     </html>
   )
