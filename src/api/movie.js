@@ -46,3 +46,19 @@ export const getMovieSearchResult = (data) => {
         params: data,
     })
 }
+
+export const getMovieSearchByCastId = (data) => {
+    const {cast_id}=data;
+    return requestTmdbApi(`person/${cast_id}/movie_credits`, {
+        method: "GET",
+        params: data,
+    })
+}
+
+export const getMovieSearchByCastName = (data) => {
+    const {cast_id}=data;
+    return requestTmdbApi(`search/person`, {
+        method: "GET",
+        params: data,
+    })
+}

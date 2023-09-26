@@ -2,8 +2,8 @@ import slugify from "../../../utils/slugify";
 import Link from 'next/navigation';
 import constant from "@/helper/constant";
 
-function MovieThumbnail({ result }) {
-  const THUMBNAIL_URL = `${constant.TMDB.IMAGE_BASE_URL}/${constant.THUMBNAIL_SIZE}${result.poster_path}`;
+function MovieThumbnail({ result, cast }) {
+  const THUMBNAIL_URL = `${constant.TMDB.IMAGE_BASE_URL}/${constant.THUMBNAIL_SIZE}${result.poster_path || result.profile_path}`;
   // const router = useRouter(); // TMDB_IMAGE_SIZE[300]
   const checkTvOrMovieFromTitle = (original_title, original_name) => {
     if (original_title) {
@@ -31,7 +31,7 @@ function MovieThumbnail({ result }) {
       //   },
       // }}
       replace passHref legacyBehavior
-     href={slugifyUrl}
+     href={cast ? `search?cast_id=${result.id}`: slugifyUrl}
     >
       <div
         id="movie-thumbnail"

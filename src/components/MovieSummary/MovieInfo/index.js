@@ -1,6 +1,7 @@
 import React from "react";
 import BasicsSection from "./BasicsSection/index";
 import constant from "../../../helper/constant";
+import Link from "next/link";
 // import Image from "next/dist/client/image";
 
 const MovieInfo = ({ movie, movieCast }) => {
@@ -12,6 +13,7 @@ const MovieInfo = ({ movie, movieCast }) => {
     setinnerWidth(screen.width);
     setcast(movie.cast);
   }, [movie]);
+  console.log({movieCast});
   return <>
     <div className="max-w-full flex flex-row flex-wrap justify-center my-12 m-2">
       {/* flex-1 overflow-hidden */}
@@ -24,15 +26,15 @@ const MovieInfo = ({ movie, movieCast }) => {
       <div>
         <BasicsSection movie={movie} heading="Title"
           classNames={{
-            root:"text-1xl sm:text-2xl md:text-3xl ",
-            content:"text-1xl sm:text-1xl md:text-2xl font-semibold"
-        }}
-        >{`${(movie.title || movie.original_name)} ${constant.MOVIE_PAGE.SEO_TITLE}`} 
+            root: "text-1xl sm:text-2xl md:text-3xl ",
+            content: "text-1xl sm:text-1xl md:text-2xl font-semibold"
+          }}
+        >{`${(movie.title || movie.original_name)} ${constant.MOVIE_PAGE.SEO_TITLE}`}
         </BasicsSection>
         <BasicsSection movie={movie} heading="Genre"
           classNames={{
-            root:"back",
-            content:"text-xs md:text-sm "
+            root: "back",
+            content: "text-xs md:text-sm "
           }}
         >
           {movie.genres.map((genre) => genre.name + ", ")}
@@ -59,25 +61,32 @@ const MovieInfo = ({ movie, movieCast }) => {
           {/* max-w-[50vw] */}
           <div className="flex overflow-x-auto overflow-y-auto space-x-2">
 
-            {movieCast.length > 0 && movieCast.map((item, index) => 
-              (
-              <div className="min-w-fit-content  px-3 cursor-pointer" key={index}>
+            {movieCast.length > 0 && movieCast.map((item, index) =>
+            (
+              <Link href={`search?cast_id=${item.id}`}>
+              <div className="min-w-fit-content  px-3 cursor-pointer " key={index}>
+                <div className=" w-[80px] h-[80px]">
                 <img
                   src={`${constant.TMDB.IMAGE_BASE_URL}/w185/${item.profile_path}`
-                }
-                // onerror="this.onerror=null; this.src='https://cdn-icons-png.flaticon.com/512/3607/3607444.png'"
-                onError={({ currentTarget }) => {
-                  currentTarget.onerror = null; // prevents looping
-                  currentTarget.src="https://cdn-icons-png.flaticon.com/512/3607/3607444.png";
-                }}
-                  className="rounded-full w-[80px] h-[80px] object-cover"
+                  }
+                  // onerror="this.onerror=null; this.src='https://cdn-icons-png.flaticon.com/512/3607/3607444.png'"
+                  onError={({ currentTarget }) => {
+                    currentTarget.onerror = null; // prevents looping
+                    currentTarget.src = "https://cdn-icons-png.flaticon.com/512/3607/3607444.png";
+                  }}
+                  className="rounded-full w-[80px] h-[80px]"
                   // aspect-[auto_44_/_44] w-20 h-20 object-cover rounded-[50%]
-                      alt="."
-                      lazy
+                  alt="."
+                  lazy
+                  width={"80px"}
+                  height={"80px"}
                 />
+                </div>
+                
                 {item.name}
-                  </div>
-              )
+              </div>
+              </Link>
+            )
             )}
           </div>
         </div>
