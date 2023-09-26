@@ -38,7 +38,7 @@ const MovieSummary = ({ result, movieCast }) => {
   //       `${BASE_URL}${result.poster_path}`
   //   );
   // }, [result]);
-
+  
   const thumbnailImageStyle = { backgroundImage: `url(${posterLink})` };
   return (
     <>

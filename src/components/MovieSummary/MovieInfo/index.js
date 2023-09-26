@@ -54,21 +54,30 @@ const MovieInfo = ({ movie, movieCast }) => {
           {Math.floor(movie.runtime / 60)} hrs {movie.runtime % 60}m {" "}
         </BasicsSection>
         <div className="text-sm m-2 md:text-lg max-w-4xl space-y-4">{movie.overview}</div>
-        <h2>The Cast</h2>
-        <div className="max-w-[50vw] overflow-x-scroll">
+        <h2>The Cast ({movieCast.length})</h2>
+        <div className="lg:max-w-[50vw] w-[90vw] overflow-x-scroll">
+          {/* max-w-[50vw] */}
           <div className="flex overflow-x-auto overflow-y-auto space-x-2">
+
             {movieCast.length > 0 && movieCast.map((item, index) => 
-              {
-              <div className="w-11 h-11 rounded-[50%] overflow-hidden px-3 cursor-pointer">
+              (
+              <div className="min-w-fit-content  px-3 cursor-pointer" key={index}>
                 <img
-                  src={`${constant.TMDB.IMAGE_BASE_URL}/w185/${item.profile_path}`}
-                  className="w-11 h-11 object-cover aspect-[auto_44_/_44]"
-                      alt={item.name}
+                  src={`${constant.TMDB.IMAGE_BASE_URL}/w185/${item.profile_path}`
+                }
+                // onerror="this.onerror=null; this.src='https://cdn-icons-png.flaticon.com/512/3607/3607444.png'"
+                onError={({ currentTarget }) => {
+                  currentTarget.onerror = null; // prevents looping
+                  currentTarget.src="https://cdn-icons-png.flaticon.com/512/3607/3607444.png";
+                }}
+                  className="rounded-full w-[80px] h-[80px] object-cover"
+                  // aspect-[auto_44_/_44] w-20 h-20 object-cover rounded-[50%]
+                      alt="."
                       lazy
                 />
-                {/* {item.name} */}
+                {item.name}
                   </div>
-              }
+              )
             )}
           </div>
         </div>
