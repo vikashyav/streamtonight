@@ -5,13 +5,15 @@ import { getMovieSearchByCastId, getMovieSearchByCastName, getMovieSearchResult 
 import { getTvSeriesSearchResult } from '@/api/tv-series';
 import ShowsCollection from '@/components/sshow-collection';
 import constant from '@/helper/constant';
+import ThumbnailSelectons from '@/components/movie-collection/thumbnail-selecton';
 // import tmdbPayload from '@/helper/tmdb-payload';
 // import slugify from '../../../../utils/slugify';
 
 function index(context) {
   const [searchResult, setsearchResult] = useState({});
   const [searchShowResult, setSearchShowResult] = useState({});
-  const [searchResultByCastName, setSearchResultByCastName]= useState()
+  const [searchResultByCastName, setSearchResultByCastName]= useState();
+const [isloading, setLoading]= useState(true);
   
   useEffect(() => {
     const serachQuery= decodeURIComponent(context?.params?.slug);
@@ -42,6 +44,7 @@ function index(context) {
       } else {
         setsearchResult(res);        
       }
+      setLoading(false)
     })
 
     getTvSeriesSearchResult({
@@ -66,14 +69,21 @@ function index(context) {
         {/* <Slider results={popularMovies} /> */}
         {/* <Brands /> */}
         {
-          searchResultByCastName?.results?.lendth > 0 && 
+          searchResultByCastName?.results?.length > 0 && 
           <MoviesCollection
           results={searchResultByCastName}
           title={`Person (cast) Search results for ${context.params.slug}`}
           cast
         />
         }
-
+        {
+          isloading &&
+          <div
+      className="mx-8 grid grid-cols-[repeat(auto-fit,minmax(220px,1fr))] smb:grid-cols-[repeat(auto-fit,minmax(155px,1fr))] sm:grid-cols-[repeat(auto-fit,minmax(180px,1fr))]"
+    >
+          <ThumbnailSelectons />
+    </div>
+        }
         <MoviesCollection
           results={searchResult}
           title={`Movies Search results for ${context.params.slug}`}
