@@ -46,6 +46,10 @@ function MovieThumbnail({ result, cast }) {
             // tailwind:w-[180px] min-h-[260px]
             className="w-full h-full my-auto min-h-[260px]  object-cover rounded-[7px] hover:scale-105"
             src={THUMBNAIL_URL}
+            onError={({ currentTarget }) => {
+              currentTarget.onerror = null; // prevents looping
+              currentTarget.src = "/images/nothing.svg";
+            }}
             alt={result.title + ", day2movies"}
             title={result.title || result.original_name + " day2movies"}
             loading="lazy"
