@@ -18,6 +18,7 @@ const structuredData={
 
 export const metadata = {
   title: 'Unlock a World of Entertainment with day2movies, streamtonight',
+  keywords:"movies, web series, online streaming, Day2Movies, entertainment platform, streaming website, movie library, watch films online",
   description: 'day2movies, streamtonight: Your ultimate destination for movies and series. Experience seamless streaming, explore a diverse catalog, and keep pace with the latest releases.',
   openGraph: {
     title: 'day2movies, streamtonight - watch movies & series online for free',

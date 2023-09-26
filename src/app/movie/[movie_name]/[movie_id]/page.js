@@ -82,6 +82,7 @@ export async function generateMetadata(context) {
   return {
     title: `${movieDetail?.title || movieDetail?.original_name} - day2movies`,
     description: `${movieDetail?.title || movieDetail?.original_name}, ${movieDetail?.overview}`,
+    keywords:`${movieDetail?.title}, ${movieDetail?.title} full movie download, ${movieDetail?.title} full movie watch online, movies, web series, online streaming, Day2Movies, entertainment platform, streaming website, movie library, watch films online`,
     openGraph: {
       title: `${movieDetail?.title || movieDetail?.original_name} day2movies - watch movies & series online for free`,
       description: `${movieDetail?.title || movieDetail?.original_name}, ${movieDetail?.overview}`,
