@@ -6,13 +6,13 @@ import { useState } from "react";
 // import { PlusIcon, XIcon } from "@heroicons/react/solid";
 // import ShowsCollection from "../../../../components/show-collection/";
 import ShowsCollection from "@/components/sshow-collection";
-import ErrorPage from "../../../404";
-import MovieSeo from "../../../../components/SEO/movie-seo";
-import MovieList2 from "../../../../components/movieList";
+import ErrorPage from "../../404";
+import MovieSeo from "../../../components/SEO/movie-seo";
+import MovieList2 from "../../../components/movieList";
 
 import ReactPlayer from "react-player/lazy";
 import constant from "@/helper/constant";
-import cx from "../../../../../utils/class-names";
+import cx from "../../../../utils/class-names";
 
 function Show({ result, recommendedShow, tvSeasonDetails, season_number }) {
   const BASE_URL = "https://image.tmdb.org/t/p/original/";

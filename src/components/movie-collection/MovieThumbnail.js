@@ -14,7 +14,12 @@ function MovieThumbnail({ result }) {
   };
   // `${(result?.title || result?.original_title)} constant.MOVIE_PAGE.SEO_TITLE`
   const movieOrSeries = checkTvOrMovieFromTitle(result.original_title, result.name);
-  const slugifyUrl = `/${movieOrSeries}/${slugify(`${(result?.title || result?.original_title)} ${constant.MOVIE_PAGE.SEO_MOVIE_URL}`)}/${result.id}`;
+  let slugifyUrl = `/${slugify(`${(result?.title || result?.original_title)} ${constant.MOVIE_PAGE.SEO_MOVIE_URL}`)}-${result.id}`;
+  if (movieOrSeries==="movie") {
+    slugifyUrl = `/${slugify(`${(result?.title || result?.original_title)} ${constant.MOVIE_PAGE.SEO_MOVIE_URL}`)}-${result.id}`;
+  } else {
+    slugifyUrl = `/${movieOrSeries}/${slugify(`${(result?.title || result?.original_title)} ${constant.MOVIE_PAGE.SEO_MOVIE_URL}`)}-${result.id}`;
+  }
   return (
     <a
       as={slugifyUrl}
@@ -50,7 +55,7 @@ function MovieThumbnail({ result }) {
           <span className="postTitle text-base overflow-hidden text-ellipsis my-[3px]">
             {result.title || result.original_name}
           </span>
-          <div className="movieDetails">
+          <div className="movieDetails bg-black/2">
             <p className="movieDate">{result.release_date}</p>
             <p className="type">{result.vote_average}</p>
             {/* <p className="hidden">{result.overview}</p> */}

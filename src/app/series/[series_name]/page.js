@@ -3,7 +3,11 @@ import constant from "@/helper/constant";
 import * as tmdbSeriesApi from "@/api/tv-series";
 
 export async function getData(context) {
-  const { series_id } = context.params;
+  // const { series_id } = context.params;
+const seriesSlug = context.params.series_name;
+  const words = seriesSlug.split('-');
+  const series_id = words[words.length - 1];
+
   const apiKey = constant.TMDB.API_KEY;
 
   const generateEndpoint = (id, seasons) => {
@@ -56,17 +60,20 @@ export async function getData(context) {
 
 export async function generateMetadata(context) {
   // read route params
-  const id = context.params.series_id;
+  // const id = context.params.series_id;
+  const seriesSlug = context.params.series_name;
+  const words = seriesSlug.split('-');
+  const id = words[words.length - 1];
   const seriesDetails = await tmdbSeriesApi.getTvSeriesById({ series_id: id, append_to_response: "videos" })
   // fetch data
   // optionally access and extend (rather than replace) parent metadata
   const previousImages = `https://image.tmdb.org/t/p/w780${seriesDetails.poster_path}` || []
 
   return {
-    title: `${seriesDetails.name || seriesDetails.original_name} - Stream To Night`,
+    title: `${seriesDetails.name || seriesDetails.original_name} - day2movies | streamtonight`,
     description: `${seriesDetails.title || seriesDetails.original_name}, ${seriesDetails.overview}`,
     openGraph: {
-      title: `${seriesDetails.name || seriesDetails.original_name} Stream To Night - watch movies & series online for free`,
+      title: `${seriesDetails.name || seriesDetails.original_name} day2movies | streamtonight - watch movies & series online for free`,
       description: `${seriesDetails.name || seriesDetails.original_name}, ${seriesDetails.overview}`,
       url: `https://streamtonight.online/${seriesDetails.id}`,
       siteName: 'streamtonight',

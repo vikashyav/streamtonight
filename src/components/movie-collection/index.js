@@ -16,12 +16,7 @@ const Collection = ({ movieList, loading, title }) =>
       ))}
       {
         loading &&
-        <>
           <ThumbnailSelecton />
-          <ThumbnailSelecton />
-          <ThumbnailSelecton />
-          <ThumbnailSelecton />
-        </>
       }
     </div>
   </div>;

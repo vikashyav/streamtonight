@@ -16,7 +16,7 @@ function ShowThumbnail({ result, isSeriesSeason, series_id, series_name }) {
     }
   };
 
-  let slugifyUrl = `/${checkTvOrMovieFromTitle(result.original_title, result.name)}/${slugify(series_name|| result?.name || (result?.original_title || result?.original_name))}/${series_id || result.id}`;
+  let slugifyUrl = `/${checkTvOrMovieFromTitle(result.original_title, result.name)}/${slugify(series_name|| result?.name || (result?.original_title || result?.original_name))}-${series_id || result.id}`;
  
   if (isSeriesSeason ==="Seasons") {
     slugifyUrl = `${slugifyUrl}?season_number=${result?.season_number}`
@@ -45,7 +45,7 @@ function ShowThumbnail({ result, isSeriesSeason, series_id, series_name }) {
           className="my-auto w-full min-h-[260px] rounded-[7px] hover:scale-105"
           />
           <div
-            className="absolute bottom-2  md:inset-y-auto md:bottom-2 background-blur inset-x-1 md:inset-x-2 space-y-4 z-50"
+            className="absolute m-0 px-2 py-1 bottom-0  md:inset-y-auto md:bottom-0 backdrop-blur-sm bg-black/30 inset-x-0 md:inset-x-0 space-y-4 z-50"
 
           >
             <h2 className="font-bold">
