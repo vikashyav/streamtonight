@@ -13,7 +13,6 @@ const MovieInfo = ({ movie, movieCast }) => {
     setinnerWidth(screen.width);
     setcast(movie.cast);
   }, [movie]);
-  console.log({movieCast});
   return <>
     <div className="max-w-full flex flex-row flex-wrap justify-center my-12 m-2">
       {/* flex-1 overflow-hidden */}
