@@ -35,6 +35,10 @@ function ShowThumbnail({ result, isSeriesSeason, series_id, series_name }) {
         >
       <img
           src={THUMBNAIL_URL}
+          onError={({ currentTarget }) => {
+            currentTarget.onerror = null; // prevents looping
+            currentTarget.src = "/images/nothing.svg";
+          }}
         // width={190}
         // height={330}
           alt={`${result.name}, ${constant.ATTRIBUTES.IMG}`}
