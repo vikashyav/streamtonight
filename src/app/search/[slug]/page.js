@@ -4,15 +4,18 @@ import MoviesCollection from "../../../components/smovies-collection";
 import { getMovieSearchResult } from '@/api/movie';
 import { getTvSeriesSearchResult } from '@/api/tv-series';
 import ShowsCollection from '@/components/sshow-collection';
-import tmdbPayload from '@/helper/tmdb-payload';
+// import tmdbPayload from '@/helper/tmdb-payload';
+// import slugify from '../../../../utils/slugify';
 
 function index(context) {
   const [searchResult, setsearchResult] = useState({});
   const [searchShowResult, setSearchShowResult] = useState({});
   
   useEffect(() => {
+    const serachQuery= decodeURIComponent(context?.params?.slug);
+    console.log({serachQuery});
     getMovieSearchResult({
-      query: context?.params?.slug,
+      query: serachQuery,
       // certification_country: tmdbPayload.BOLLYWOOD_RECENT_YEAR_PAYLOAD.certification_country
     })
     .then(async(res) => {
@@ -21,7 +24,7 @@ function index(context) {
     })
 
     getTvSeriesSearchResult({
-      query: context?.params?.slug,
+      query: serachQuery,
       // certification_country: tmdbPayload.BOLLYWOOD_RECENT_YEAR_PAYLOAD.certification_country,
       language:'en-US'
     })
