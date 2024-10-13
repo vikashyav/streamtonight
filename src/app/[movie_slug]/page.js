@@ -76,6 +76,7 @@ export async function getData(context) {
 var words = movieSlug.split('-');
 var id = words[words.length - 1];
   const request = await tmdbMovieApiList.getMovieById({ movie_id: id, append_to_response:"videos" })
+  const imageLists=  await tmdbMovieApiList.getMovieImages({movie_id: id});
   
   const movieCast = await tmdbMovieApiList.getMovieCast({ movie_id: id });
 
@@ -86,7 +87,8 @@ var id = words[words.length - 1];
       // session,
       result: request,
       recommendedMovie: response,
-      movieCast
+      movieCast,
+      imageLists
     },
     // revalidate: 10,
   };
@@ -122,7 +124,7 @@ export async function generateMetadata(context) {
 async function Movie(context) {
 
   const data = await getData(context);
-  const { result, recommendedMovie, movieCast } = data.props;
+  const { result, recommendedMovie, movieCast, imageLists } = data.props;
   
   if (!result) {
     return (<ErrorPage />);
@@ -135,7 +137,7 @@ async function Movie(context) {
   return (
     <>
       {/* <MovieSeo movie={result} /> */}
-      <MovieSummary result={result} movieCast={movieCast?.cast} />
+      <MovieSummary result={result} movieCast={movieCast?.cast} imageLists={imageLists} />
       {recommendedMovie.results && <MoviesCollection results={recommendedMovie} title="Recommended Movies" />}
     </>
   );

@@ -19,13 +19,13 @@ const payload = {
 
 export async function getData(context) {
   // const session = await getSession(context);
-  const page = context.searchParams?.page
-  if (page && page < 500) {
-    payload.page = page;
-  }
+  // const page = context.searchParams?.page || 1;
+  // if (page && page < 500) {
+    // payload.page = page;
+  // }
   const [popularMovies] =
     await Promise.all([
-      getDiscoverMovies({ ...payload, page}),
+      getDiscoverMovies({ ...payload}),
       // getDiscoverMovies({ ...payload, page: 2 }),
       // getDiscoverMovies({ ...payload, page: 3 }),
     ]);

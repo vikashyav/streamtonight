@@ -5,8 +5,11 @@ import cx from "../../../utils/class-names";
 import moment from "moment";
 // import ReactPlayer from "react-player/lazy";
 import Const from "../../helper/constant";
+// import ImageGallery from "react-image-gallery";
+import ImgGallery from "./imgGallery";
+// import "react-image-gallery/styles/css/image-gallery.css";
 
-const MovieSummary = ({ result, movieCast }) => {
+const MovieSummary = ({ result, movieCast, imageLists={} }) => {
   const index = result.videos.results.findIndex(
     (element) => element.type === "Trailer"
   );
@@ -29,7 +32,26 @@ const MovieSummary = ({ result, movieCast }) => {
   const handleIframeLoad = () => {
     setIframeLoading(false);
   };
-
+console.log(imageLists);
+const images = imageLists?.backdrops?.map((item)=>{ 
+return {
+  original: `${BASE_URL}${item?.file_path}`,
+  thumbnail: `${Const.TMDB.IMAGE_BASE_URL}/w200/${item?.file_path}`
+}}
+) ||[
+  {
+    original: "https://picsum.photos/id/1018/1000/600/",
+    thumbnail: "https://picsum.photos/id/1018/250/150/",
+  },
+  {
+    original: "https://picsum.photos/id/1015/1000/600/",
+    thumbnail: "https://picsum.photos/id/1015/250/150/",
+  },
+  {
+    original: "https://picsum.photos/id/1019/1000/600/",
+    thumbnail: "https://picsum.photos/id/1019/250/150/",
+  },
+];
   // useEffect(() => {
   //   // scroll.scrollToTop({ smooth: true });
   //   setShowPlayer(false);
@@ -100,6 +122,18 @@ const MovieSummary = ({ result, movieCast }) => {
         </section>
       </div>
       <MovieInfo movie={result} movieCast={movieCast} />
+      {/* {imageLists.backdrops?.map((item)=><img src={`${BASE_URL}${item?.file_path}`} /> )} */}
+      {/* <div className=" max-h-[70vh] bg-black p-4 container grid">
+        <div className="">
+          <ImageGallery items={images} lazyLoad={true}
+            additionalClass="object-conatin  "
+            originalHeight={"200px"}
+            // originalHeight={""}
+          />
+        </div>
+      </div> */}
+      {imageLists?.backdrops &&  <ImgGallery images={images} /> }
+     
     </>
   );
 };

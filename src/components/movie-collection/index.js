@@ -21,7 +21,10 @@ const Collection = ({ movieList, loading, title }) =>
     </div>
   </div>;
 
-function MoviesCollection({ results, title, pagenate, ...restProps }) {
+function MoviesCollection(props) {
+  const { results, title, pagenate, ...restProps }= props;
+  console.log("props", props);
+  
   if (!pagenate) {
     return <Collection movieList={results.results} loading={false} title={title} />
   }
@@ -36,6 +39,8 @@ function MoviesCollection({ results, title, pagenate, ...restProps }) {
       const payload = { page, ...results?.defaultApiPayload };
       // payload.certification_country = tmdbPayload.BOLLYWOOD_RECENT_YEAR_PAYLOAD.certification_country;
       let apiCall = moveApi?.[results?.apiCallMethod] || moveApi?.getPopularMovies;
+      console.log("payload", payload);
+      
       const newData = await apiCall(payload);
       setMovieList((prevData) => [...prevData, ...newData.results]);
       setPage(newData.page);

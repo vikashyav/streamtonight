@@ -62,3 +62,14 @@ export const getMovieSearchByCastName = (data) => {
         params: data,
     })
 }
+
+export const getMovieImages=(data)=>{
+    const {movie_id}=data;
+    // https://api.themoviedb.org/3/movie/533535/images
+    return requestTmdbApi(`movie/${movie_id}/images`,
+        {
+            method: "GET",
+            params: data,
+        }
+    )
+}
